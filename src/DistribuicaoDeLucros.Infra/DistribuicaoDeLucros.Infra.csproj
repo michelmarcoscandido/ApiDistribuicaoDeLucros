@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="SE.EntityFrameworkCore.UnitOfWork" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DistribuicaoDeLucros.Domain\DistribuicaoDeLucros.Domain.csproj" />
   </ItemGroup>
 
 </Project>

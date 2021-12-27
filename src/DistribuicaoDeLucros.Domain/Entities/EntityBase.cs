@@ -2,10 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DistribuicaoDeLucros.Domain.Entities
 {
-    public class Area : EntityBase
+    public class EntityBase
     {
-
-        [Required]
-        public string Descricao { get; set; }
+        public Guid Id { get; private set; } = Guid.NewGuid();
     }
 }

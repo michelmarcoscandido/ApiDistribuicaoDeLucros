@@ -1,6 +1,7 @@
 using Serilog;
 using Microsoft.EntityFrameworkCore;
 using DistribuicaoDeLucros.Infra.Context;
+using SE.EntityFrameworkCore.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<SqlContext>(opt => opt.UseInMemoryDatabase("DistribuicaoDeLucros"));
+builder.Services.AddDbContext<SqlContext>( opt => opt.UseInMemoryDatabase("DistribuicaoDeLucros"))
+       .AddUnitOfWork<SqlContext>();;
 
 var app = builder.Build();
 

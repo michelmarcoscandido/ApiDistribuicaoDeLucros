@@ -1,6 +1,7 @@
 using Serilog;
 using DistribuicaoDeLucros.Services;
 using DistribuicaoDeLucros.Infra;
+using DistribuicaoDeLucros.Infra.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +17,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.LoadServiceDependencyLoader();
 builder.Services.LoadInfraDependencyLoader();
+builder.Services.BuildServiceProvider().Initialize();
 
 var app = builder.Build();
-
 app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.

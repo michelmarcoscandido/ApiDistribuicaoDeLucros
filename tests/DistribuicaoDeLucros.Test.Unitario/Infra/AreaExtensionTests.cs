@@ -6,29 +6,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace DistribuicaoDeLucros.Test.Unitario;
+namespace DistribuicaoDeLucros.Test.Unitario.Infra;
 
-public class AreaExtensionTests
+public class AreaExtensionTests : BaseTests
 {
-
-    public AreaExtensionTests()
-    {
-        var serviceCollection = new ServiceCollection();
-        serviceCollection
-                        .AddDbContext<SqlContext>(
-                            options => options.UseInMemoryDatabase(databaseName: "DistribuicaoDeLucros"),
-                            ServiceLifetime.Transient
-                        );
-         ServiceProvider = serviceCollection.BuildServiceProvider();
-    }
-    private readonly ServiceProvider ServiceProvider;
-
     [Fact]
     public void CarregarOsDadosAoIniciarAAplicacaoDeveRetornarAsAreas()
     {
+        
+        using var context = ServiceProvider.GetService<SqlContext>();
+        
         //Arange
         ServiceProvider.Initialize();
-        using var context = ServiceProvider.GetService<SqlContext>();
 
         //Act
         var areas = context.Area.ToList();

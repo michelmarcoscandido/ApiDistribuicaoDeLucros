@@ -5,6 +5,6 @@ namespace DistribuicaoDeLucros.Domain.Interfaces.Services
 {
     public interface IFuncionarioService
     {
-        Task ArmazenarFuncionarios(List<Funcionario> funcionarios); 
+        Task ArmazenarFuncionariosAsync(List<Funcionario> funcionarios); 
     }
 }

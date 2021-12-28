@@ -18,7 +18,7 @@ namespace DistribuicaoDeLucros.Services.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task ArmazenarFuncionarios(List<Funcionario> funcionarios)
+        public async Task ArmazenarFuncionariosAsync(List<Funcionario> funcionarios)
         {
             await funcionarioRepository.InsertAsync(funcionarios);
             await unitOfWork.SaveChangesAsync();

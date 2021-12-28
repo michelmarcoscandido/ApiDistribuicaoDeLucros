@@ -25,7 +25,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Services
             var funcionarioService = ServiceProvider.GetService<IFuncionarioService>();
             List<Funcionario> funcionarios = new (){};
 
-            for(int i = 0; i<10; i ++) {
+            for(int i = 0; i<2; i ++) {
                 funcionarios.Add(new Funcionario(){
                     Nome = faker.Person.FullName,
                     Matricula = faker.Random.AlphaNumeric(10),
@@ -37,12 +37,12 @@ namespace DistribuicaoDeLucros.Test.Unitario.Services
             }
 
             //Act
-            funcionarioService.ArmazenarFuncionarios(funcionarios);
+            funcionarioService.ArmazenarFuncionariosAsync(funcionarios);
             var funcionariosBase = context.Funcionario.ToList();
 
             //Assert
-            funcionariosBase.Should().HaveCount(10);
-        
+            funcionariosBase.Should().HaveCount(funcionarios.Count());        
         }
+
     }
 }

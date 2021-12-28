@@ -19,12 +19,12 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
 
             var model = new Funcionario () {};
             var result = validator.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(person => person.Matricula);
-            result.ShouldHaveValidationErrorFor(person => person.Area);
-            result.ShouldHaveValidationErrorFor(person => person.Cargo);
-            result.ShouldHaveValidationErrorFor(person => person.DataDeAdimissao);
-            result.ShouldHaveValidationErrorFor(person => person.Nome);
-            result.ShouldHaveValidationErrorFor(person => person.SalarioBruto);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Matricula);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Area);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Cargo);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.DataDeAdimissao);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Nome);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.SalarioBruto);
         }
 
         [Theory]
@@ -39,7 +39,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
                 Matricula = matricula
             };
             var result = validator.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(person => person.Matricula);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Matricula);
         }
 
         [Theory]
@@ -54,7 +54,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
                 Cargo = cargo
             };
             var result = validator.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(person => person.Cargo);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Cargo);
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
                 DataDeAdimissao = DateOnly.FromDateTime(DateTime.Today.AddDays(1))
             };
             var result = validator.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(person => person.DataDeAdimissao);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.DataDeAdimissao);
         }
 
         [Theory]
@@ -81,7 +81,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
                 Nome = nome
             };
             var result = validator.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(person => person.Nome);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.Nome);
         }
 
         [Theory]
@@ -95,17 +95,13 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
                 SalarioBruto = salarioBruto
             };
             var result = validator.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(person => person.SalarioBruto);
+            result.ShouldHaveValidationErrorFor(funcionario => funcionario.SalarioBruto);
         }
 
         [Fact]
         public void DeveEstarTudoOkQuandoOsDadosDoFuncionarioEstaoPreenchidosCorretamente() 
         {
 
-            //Arange
-            using var context = ServiceProvider.GetService<SqlContext>();
-            var area = context.Area.FirstOrDefault();
-            
             
             var validator = ServiceProvider.GetService<AbstractValidator<Funcionario>>();
 
@@ -115,16 +111,16 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
                 Matricula = faker.Random.AlphaNumeric(10),
                 Cargo = faker.Name.JobArea(),
                 SalarioBruto = faker.Random.Decimal(1000.62m, 5982.23m),
-                DataDeAdimissao = faker.Date.PastDateOnly(),
-                Area = area    
+                DataDeAdimissao = DateOnly.FromDateTime(DateTime.Today),
+                Area = new Area(){ Descricao = "Area" }    
             };
             var result = validator.TestValidate(model);
-            result.ShouldNotHaveValidationErrorFor(person => person.Matricula);
-            result.ShouldNotHaveValidationErrorFor(person => person.Area);
-            result.ShouldNotHaveValidationErrorFor(person => person.Cargo);
-            result.ShouldNotHaveValidationErrorFor(person => person.DataDeAdimissao);
-            result.ShouldNotHaveValidationErrorFor(person => person.Nome);
-            result.ShouldNotHaveValidationErrorFor(person => person.SalarioBruto);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.Matricula);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.Area);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.Cargo);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.DataDeAdimissao);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.Nome);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.SalarioBruto);
         }
     }
 }

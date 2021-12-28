@@ -13,9 +13,8 @@ namespace DistribuicaoDeLucros.Infra
         public static void LoadInfraDependencyLoader(this IServiceCollection services) {
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IAreaRepository, AreaRepository>();
-
             services.AddDbContext<SqlContext>( opt => opt.UseInMemoryDatabase("DistribuicaoDeLucros"))
-            .AddUnitOfWork<SqlContext>();
+            .AddUnitOfWork<SqlContext>();   
         }
     }
 }

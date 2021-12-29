@@ -120,7 +120,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Validator
             result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.Cargo);
             result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.DataDeAdimissao);
             result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.Nome);
-            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.SalarioBruto);
+            result.ShouldNotHaveValidationErrorFor(funcionario => funcionario.SalarioBruto);  
         }
     }
 }

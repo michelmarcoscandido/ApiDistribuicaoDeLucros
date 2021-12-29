@@ -1,5 +1,6 @@
 using System;
 using DistribuicaoDeLucros.Infra;
+using DistribuicaoDeLucros.Infra.Context;
 using DistribuicaoDeLucros.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,15 +8,15 @@ namespace DistribuicaoDeLucros.Test.Unitario
 {
     abstract public class BaseTests
     {
-    public BaseTests()
-    {
-        var serviceCollection = new ServiceCollection();
-        serviceCollection.LoadInfraDependencyLoader();
-        serviceCollection.LoadServiceDependencyLoader();
+        public BaseTests()
+        {
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.LoadInfraDependencyLoader();
+            serviceCollection.LoadServiceDependencyLoader();
 
-        ServiceProvider = serviceCollection.BuildServiceProvider();
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+        }
+        protected readonly ServiceProvider ServiceProvider;
     }
-    protected readonly ServiceProvider ServiceProvider;
-
-    }
+    
 }

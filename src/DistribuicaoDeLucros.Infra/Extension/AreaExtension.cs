@@ -8,12 +8,13 @@ namespace DistribuicaoDeLucros.Infra.Context
     {
         public static void Initialize(this IServiceProvider serviceProvider) {
             
-            using var context = new SqlContext(serviceProvider.GetRequiredService<DbContextOptions<SqlContext>>());
+             var context = serviceProvider.GetService<SqlContext>();
             // Look for any board games.
             if (context.Area.Any())
             {
                 return;   // Data was already seeded
             }
+
             context.Area.AddRange(
                 new Area(){ Descricao = "Diretoria"},
                 new Area(){ Descricao = "Contabilidade"},
@@ -22,8 +23,8 @@ namespace DistribuicaoDeLucros.Infra.Context
                 new Area(){ Descricao = "Serviços Gerais"},
                 new Area(){ Descricao = "Relacionamento com o Cliente"}
             );
+
             context.SaveChanges();
-            
         }
     }
 }

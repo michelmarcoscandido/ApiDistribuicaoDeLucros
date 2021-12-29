@@ -10,18 +10,16 @@ namespace DistribuicaoDeLucros.Test.Unitario.Infra;
 
 public class AreaExtensionTests : BaseTests
 {
+
     [Fact]
-    public void CarregarOsDadosAoIniciarAAplicacaoDeveRetornarAsAreas()
+    public void DeveCarregarSeisAreasDeAtuacao()
     {
-        
-        using var context = ServiceProvider.GetService<SqlContext>();
-        
         //Arange
+        using var context = ServiceProvider.GetService<SqlContext>();
         ServiceProvider.Initialize();
 
         //Act
         var areas = context.Area.ToList();
-        
         //Assert
         areas.Should().HaveCount(6);
         areas.Where(x => x.Descricao.Equals("Diretoria")).Should().NotBeNull();

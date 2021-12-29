@@ -12,14 +12,11 @@ namespace DistribuicaoDeLucros.Test.Unitario.Services
 {
     public class FuncionarioServiceTests : BaseTests
     {
-
         [Fact]
-        public void ArmazenaUmaListaDeFuncionariosNaBaseDeDadosDeveGravarTodosOsRegistrosCorretamente() {
+        public void DeveArmazenarUmaListaDeFuncionario() {
             
             //Arange
             using var context = ServiceProvider.GetService<SqlContext>();
-            var area = context.Area.FirstOrDefault();
-            
             var faker = new Faker("en");
 
             var funcionarioService = ServiceProvider.GetService<IFuncionarioService>();
@@ -32,7 +29,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Services
                     Cargo = faker.Name.JobArea(),
                     SalarioBruto = faker.Random.Decimal(1000.62m, 5982.23m),
                     DataDeAdimissao = faker.Date.PastDateOnly(),
-                    Area = area
+                    Area = new(){ Descricao = "Area"}
                 });
             }
 
@@ -41,8 +38,32 @@ namespace DistribuicaoDeLucros.Test.Unitario.Services
             var funcionariosBase = context.Funcionario.ToList();
 
             //Assert
-            funcionariosBase.Should().HaveCount(funcionarios.Count());        
+            funcionariosBase.Should().HaveCount(funcionarios.Count());     
         }
 
+        [Fact]
+        public void DeveValidarOsFuncionariosENaoPermitirNenhumaInsercaoForaDoPadraoDeValidacao() {
+            //Arange
+            var context = ServiceProvider.GetService<SqlContext>();
+            var faker = new Faker("en");
+            
+            var funcionarioService = ServiceProvider.GetService<IFuncionarioService>();
+            List<Funcionario> funcionarios = new (){};
+
+            funcionarios.Add(new Funcionario(){
+                    Nome = "",
+                    Matricula = "",
+                    SalarioBruto = -10,
+                    DataDeAdimissao = faker.Date.FutureDateOnly(),
+                    Cargo = ""
+                });
+
+            //Act
+            funcionarioService.ArmazenarFuncionariosAsync(funcionarios);
+            var funcionariosBase = context.Funcionario.ToList();
+
+            //Assert
+            funcionariosBase.Should().HaveCount(0); 
+        }
     }
 }

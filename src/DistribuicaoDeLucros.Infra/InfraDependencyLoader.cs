@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System;
 using DistribuicaoDeLucros.Domain.Interfaces.Repositories;
 using DistribuicaoDeLucros.Infra.Context;
@@ -13,7 +14,7 @@ namespace DistribuicaoDeLucros.Infra
         public static void LoadInfraDependencyLoader(this IServiceCollection services) {
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IAreaRepository, AreaRepository>();
-            services.AddDbContext<SqlContext>( opt => opt.UseInMemoryDatabase("DistribuicaoDeLucros"))
+            services.AddDbContext<SqlContext>( opt => opt.UseInMemoryDatabase(Guid.NewGuid().ToString()))
             .AddUnitOfWork<SqlContext>();   
         }
     }

@@ -7,5 +7,8 @@ namespace DistribuicaoDeLucros.Domain.Entities
 
         [Required]
         public string Descricao { get; set; }
+        
+        [Required]
+        public int Peso { get; set; }
     }
 }

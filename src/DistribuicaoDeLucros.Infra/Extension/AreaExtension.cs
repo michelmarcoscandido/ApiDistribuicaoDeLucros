@@ -16,12 +16,12 @@ namespace DistribuicaoDeLucros.Infra.Context
             }
 
             context.Area.AddRange(
-                new Area(){ Descricao = "Diretoria"},
-                new Area(){ Descricao = "Contabilidade"},
-                new Area(){ Descricao = "Financeiro"},
-                new Area(){ Descricao = "Tecnologia"},
-                new Area(){ Descricao = "Serviços Gerais"},
-                new Area(){ Descricao = "Relacionamento com o Cliente"}
+                new Area(){ Descricao = "Diretoria", Peso = 1},
+                new Area(){ Descricao = "Contabilidade", Peso = 2},
+                new Area(){ Descricao = "Financeiro", Peso = 2},
+                new Area(){ Descricao = "Tecnologia", Peso = 2},
+                new Area(){ Descricao = "Serviços Gerais", Peso = 3},
+                new Area(){ Descricao = "Relacionamento com o Cliente", Peso = 5}
             );
 
             context.SaveChanges();

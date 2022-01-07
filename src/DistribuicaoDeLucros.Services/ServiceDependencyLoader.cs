@@ -11,7 +11,7 @@ namespace DistribuicaoDeLucros.Services
     public static class ServiceDependencyLoader
     {
         public static void LoadServiceDependencyLoader(this IServiceCollection services) {
-            services.AddScoped<IFuncionarioService, FuncionarioService>();
+            services.AddScoped<IDistribuirLucrosService, DistribuirLucrosService>();
             services.AddScoped<AbstractValidator<Funcionario>, FuncionarioValidator>();
         }
     }

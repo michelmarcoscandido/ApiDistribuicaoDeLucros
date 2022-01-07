@@ -11,11 +11,14 @@ namespace DistribuicaoDeLucros.Infra
 {
     public static class InfraDependencyLoader
     {
-        public static void LoadInfraDependencyLoader(this IServiceCollection services) {
+        public static void LoadInfraDependencyLoader(this IServiceCollection services, bool tests = false) {
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IAreaRepository, AreaRepository>();
-            services.AddDbContext<SqlContext>( opt => opt.UseInMemoryDatabase(Guid.NewGuid().ToString()))
-            .AddUnitOfWork<SqlContext>();   
+
+            if(tests == false) {
+                services.AddDbContext<SqlContext>( opt => opt.UseInMemoryDatabase("distribuicaoDeLucros"))
+                .AddUnitOfWork<SqlContext>();   
+            }
         }
     }
 }

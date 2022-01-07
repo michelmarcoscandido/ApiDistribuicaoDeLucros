@@ -1,8 +1,7 @@
 using System.Runtime.CompilerServices;
-using DistribuicaoDeLucros.Domain.Handlers;
 
 [assembly: InternalsVisibleTo("DistribuicaoDeLucros.Test.Unitario")]
-namespace DistribuicaoDeLucros.Domain.Interfaces.Handlers
+namespace DistribuicaoDeLucros.Services.Handlers.Interfaces
 {
     internal interface IHandler
     {

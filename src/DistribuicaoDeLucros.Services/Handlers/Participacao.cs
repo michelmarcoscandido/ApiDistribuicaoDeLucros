@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using DistribuicaoDeLucros.Domain.Entities;
 
 [assembly: InternalsVisibleTo("DistribuicaoDeLucros.Test.Unitario")]
-namespace DistribuicaoDeLucros.Domain.Handlers
+namespace DistribuicaoDeLucros.Services.Handlers
 {
     internal class Participacao
     {
@@ -11,7 +11,7 @@ namespace DistribuicaoDeLucros.Domain.Handlers
         public int PesoPorAreaDeAtuacao { get; set; }
         public int PesoPorFaixaSalarial { get; set; }
         public int PesoPortempoDeAdmissao { get; set; }
-        public decimal ValorDaParticipacao { get; set; }
+        public decimal ValorParticipacao { get; set; }
         
     }
 }

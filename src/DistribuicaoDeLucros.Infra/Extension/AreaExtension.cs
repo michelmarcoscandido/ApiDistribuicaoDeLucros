@@ -6,10 +6,8 @@ namespace DistribuicaoDeLucros.Infra.Context
 {
     public static class AreaExtension
     {
-        public static void Initialize(this IServiceProvider serviceProvider) {
+        public static void Initialize(this SqlContext context) {
             
-             var context = serviceProvider.GetService<SqlContext>();
-            // Look for any board games.
             if (context.Area.Any())
             {
                 return;   // Data was already seeded

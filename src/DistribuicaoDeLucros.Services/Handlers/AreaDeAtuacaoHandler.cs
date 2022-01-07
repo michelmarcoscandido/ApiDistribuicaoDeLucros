@@ -1,8 +1,9 @@
 using System;
 using System.Runtime.CompilerServices;
+using DistribuicaoDeLucros.Services.Handlers;
 
 [assembly: InternalsVisibleTo("DistribuicaoDeLucros.Test.Unitario")]
-namespace DistribuicaoDeLucros.Domain.Handlers
+namespace DistribuicaoDeLucros.Services.Handlers
 {
     internal class AreaDeAtuacaoHandler : AbstractHandler
     {

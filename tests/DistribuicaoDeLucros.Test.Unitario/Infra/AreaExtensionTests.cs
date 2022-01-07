@@ -14,12 +14,9 @@ public class AreaExtensionTests : BaseTests
     [Fact]
     public void DeveCarregarSeisAreasDeAtuacao()
     {
-        //Arange
-        using var context = ServiceProvider.GetService<SqlContext>();
-        ServiceProvider.Initialize();
-
         //Act
-        var areas = context.Area.ToList();
+        Context.Initialize();
+        var areas = Context.Area.ToList();
         //Assert
         areas.Should().HaveCount(6);
         areas.Where(x => x.Descricao.Equals("Diretoria")).Should().NotBeNull();

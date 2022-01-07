@@ -1,9 +1,9 @@
 using System;
 using System.Runtime.CompilerServices;
-using DistribuicaoDeLucros.Domain.Interfaces.Handlers;
+using DistribuicaoDeLucros.Services.Handlers.Interfaces;
 
 [assembly: InternalsVisibleTo("DistribuicaoDeLucros.Test.Unitario")]
-namespace DistribuicaoDeLucros.Domain.Handlers
+namespace DistribuicaoDeLucros.Services.Handlers
 {
     internal abstract class AbstractHandler : IHandler
     {

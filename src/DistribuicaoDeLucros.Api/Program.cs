@@ -3,6 +3,7 @@ using DistribuicaoDeLucros.Services;
 using DistribuicaoDeLucros.Infra;
 using DistribuicaoDeLucros.Infra.Context;
 using System.Reflection;
+using DistribuicaoDeLucros.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,8 @@ builder.Services.AddSwaggerGen(c => {
 
 builder.Services.LoadServiceDependencyLoader();
 builder.Services.LoadInfraDependencyLoader();
-builder.Services.BuildServiceProvider().Initialize();
+builder.Services.LoadApplicationDependencyLoader();
+builder.Services.BuildServiceProvider().GetService<SqlContext>().Initialize();
 
 var app = builder.Build();
 app.UseSerilogRequestLogging();

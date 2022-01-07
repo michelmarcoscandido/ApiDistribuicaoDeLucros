@@ -17,6 +17,6 @@ namespace DistribuicaoDeLucros.Application.Response
         /// Valor de participação que o Funcionário irá receber.
         /// </summary>
         [JsonPropertyName("valor_participacao")]
-        public decimal ValorParticipacao { get; set; }
+        public string ValorParticipacao { get; set; }
     }
 }

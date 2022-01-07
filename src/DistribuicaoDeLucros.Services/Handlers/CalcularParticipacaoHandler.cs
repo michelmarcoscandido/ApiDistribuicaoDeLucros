@@ -1,8 +1,9 @@
 using System;
 using System.Runtime.CompilerServices;
+using DistribuicaoDeLucros.Services.Handlers;
 
 [assembly: InternalsVisibleTo("DistribuicaoDeLucros.Test.Unitario")]
-namespace DistribuicaoDeLucros.Domain.Handlers
+namespace DistribuicaoDeLucros.Services.Handlers
 {
     internal class CalcularParticipacaoHandler : AbstractHandler
     {
@@ -15,9 +16,8 @@ namespace DistribuicaoDeLucros.Domain.Handlers
                 int pesoPorAreaDeAtuacao = participacao.PesoPorAreaDeAtuacao;
                 int pesoPorFaixaSalarial = participacao.PesoPorFaixaSalarial;
                 
-
                 decimal resultado = ((pesoPorTempoDeTrabalho + pesoPorAreaDeAtuacao) * salarioBruto * 3) / pesoPorFaixaSalarial;
-                participacao.ValorDaParticipacao = Math.Round(resultado, 2);
+                participacao.ValorParticipacao = Math.Round(resultado, 2);
 
             return participacao;
         }

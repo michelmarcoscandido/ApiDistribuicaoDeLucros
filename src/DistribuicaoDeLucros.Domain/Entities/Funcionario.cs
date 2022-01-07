@@ -20,6 +20,7 @@ namespace DistribuicaoDeLucros.Domain.Entities
         public decimal SalarioBruto { get; set; }
         [Required]
         public DateOnly DataDeAdimissao { get; set; }
+        public decimal ValorParticipacao { get; set; }
     }
 
     

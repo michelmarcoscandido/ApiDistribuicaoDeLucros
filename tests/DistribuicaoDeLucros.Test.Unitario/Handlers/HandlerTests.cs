@@ -1,8 +1,7 @@
 using System;
 using Bogus;
 using DistribuicaoDeLucros.Domain.Entities;
-using DistribuicaoDeLucros.Domain.Handlers;
-using DistribuicaoDeLucros.Domain.Interfaces.Handlers;
+using DistribuicaoDeLucros.Services.Handlers;
 using FluentAssertions;
 using Xunit;
 
@@ -53,8 +52,6 @@ namespace DistribuicaoDeLucros.Test.Unitario.Handlers
           }
           ;
           var areaDeAtuacao = new AreaDeAtuacaoHandler();
-
-          
             areaDeAtuacao
               .SetNext(new FaixaSalarialHandler())
               .SetNext(new TempoDeAdmissaoHandler())
@@ -63,7 +60,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Handlers
           retornoParticipacao.PesoPorAreaDeAtuacao.Should().Be(2);
           retornoParticipacao.PesoPorFaixaSalarial.Should().Be(3);
           retornoParticipacao.PesoPortempoDeAdmissao.Should().Be(resultadoTempoAdimissao);
-          retornoParticipacao.ValorDaParticipacao.Should().Be(resultadoCalculo);
+          retornoParticipacao.ValorParticipacao.Should().Be(resultadoCalculo);
         }
         
 
@@ -100,7 +97,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Handlers
           retornoParticipacao.PesoPorAreaDeAtuacao.Should().Be(2);
           retornoParticipacao.PesoPorFaixaSalarial.Should().Be(resultadoFaixaSalarial);
           retornoParticipacao.PesoPortempoDeAdmissao.Should().Be(1);
-          retornoParticipacao.ValorDaParticipacao.Should().Be(resultadoCalculo);
+          retornoParticipacao.ValorParticipacao.Should().Be(resultadoCalculo);
         }
 
         [Theory]
@@ -126,8 +123,6 @@ namespace DistribuicaoDeLucros.Test.Unitario.Handlers
           }
           ;
           var areaDeAtuacao = new AreaDeAtuacaoHandler();
-
-          
             areaDeAtuacao
               .SetNext(new FaixaSalarialHandler())
               .SetNext(new TempoDeAdmissaoHandler())
@@ -136,7 +131,7 @@ namespace DistribuicaoDeLucros.Test.Unitario.Handlers
           retornoParticipacao.PesoPorAreaDeAtuacao.Should().Be(pesoAreaDeAtuacao);
           retornoParticipacao.PesoPorFaixaSalarial.Should().Be(1);
           retornoParticipacao.PesoPortempoDeAdmissao.Should().Be(1);
-          retornoParticipacao.ValorDaParticipacao.Should().Be(resultadoCalculo);
+          retornoParticipacao.ValorParticipacao.Should().Be(resultadoCalculo);
         }
     }
 }

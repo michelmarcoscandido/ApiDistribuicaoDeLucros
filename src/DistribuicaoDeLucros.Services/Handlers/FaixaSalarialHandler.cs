@@ -1,6 +1,7 @@
 using System;
+using DistribuicaoDeLucros.Services.Handlers;
 
-namespace DistribuicaoDeLucros.Domain.Handlers
+namespace DistribuicaoDeLucros.Services.Handlers
 {
     internal class FaixaSalarialHandler : AbstractHandler
     {
